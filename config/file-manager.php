@@ -17,7 +17,7 @@ return [
      *
      * Default - ConfigACLRepository (see rules in - aclRules)
      */
-    'aclRepository'     => ConfigACLRepository::class,
+    'aclRepository'     => \App\Services\SimpleACLRepository::class,
 
     //********* Default configuration for DefaultConfigRepository **************
 
@@ -95,14 +95,14 @@ return [
      * Add your middleware name to array -> ['web', 'auth', 'admin']
      * !!!! RESTRICT ACCESS FOR NON ADMIN USERS !!!!
      */
-    'middleware'        => ['web'],
+    'middleware'        => ['web', 'auth'], // Только базовая авторизация
 
     /***************************************************************************
      * ACL mechanism ON/OFF
      *
      * default - false(OFF)
      */
-    'acl'               => false,
+    'acl'               => true, // Включаем ACL с простым репозиторием
 
     /**
      * Hide files and folders from file-manager if user doesn't have access
@@ -132,30 +132,13 @@ return [
 
     /***************************************************************************
      * ACL rules list - used for default ACL repository (ConfigACLRepository)
-     *
-     * 1 it's user ID
-     * null - for not authenticated user
-     *
-     * 'disk' => 'disk-name'
-     *
-     * 'path' => 'folder-name'
-     * 'path' => 'folder1*' - select folder1, folder12, folder1/sub-folder, ...
-     * 'path' => 'folder2/*' - select folder2/sub-folder,... but not select folder2 !!!
-     * 'path' => 'folder-name/file-name.jpg'
-     * 'path' => 'folder-name/*.jpg'
-     *
-     * * - wildcard
-     *
-     * access: 0 - deny, 1 - read, 2 - read/write
      */
     'aclRules'          => [
-        null => [
-            //['disk' => 'public', 'path' => '/', 'access' => 2],
-        ],
-        1    => [
-            //['disk' => 'public', 'path' => 'images/arch*.jpg', 'access' => 2],
-            //['disk' => 'public', 'path' => 'files/*', 'access' => 1],
-        ],
+        // Для неавторизованных пользователей - запрет
+        null => [],
+
+        // Для всех авторизованных пользователей - полный доступ
+        // В дальнейшем можно настроить по user_id
     ],
 
     /**

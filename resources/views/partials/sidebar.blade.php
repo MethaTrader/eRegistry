@@ -38,11 +38,6 @@
                         <li><a href="{{ route('monitoring.create') }}" class="{{ request()->routeIs('patients.monitoring.create') ? 'active' : '' }}">Add monitoring</a></li>
                     </ul>
                 </li>
-
-                <!-- Settings -->
-                <li class="{{ request()->is('settings') ? 'active' : '' }}">
-                    <a href="{{ url('/settings') }}"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-16.svg') }}" alt=""></span> <span>Settings</span></a>
-                </li>
             </ul>
         </div>
     </div>

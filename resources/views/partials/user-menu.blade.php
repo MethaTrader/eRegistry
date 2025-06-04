@@ -7,9 +7,6 @@
         <span class="user-img"><img src="{{ asset('assets/img/user-06.jpg') }}" alt="Admin"></span>
     </a>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ url('/profile') }}">My Profile</a>
-        <a class="dropdown-item" href="{{ url('/edit-profile') }}">Edit Profile</a>
-        <a class="dropdown-item" href="{{ url('/settings') }}">Settings</a>
         <a class="dropdown-item" href="{{ url('/login') }}">Logout</a>
     </div>
 </li>

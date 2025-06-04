@@ -109,7 +109,7 @@ class DoctorController extends Controller
     public function destroy(User $doctor)
     {
         // Проверка: только администратор может удалять доктора
-        if (!auth()->user() || !auth()->user()->hasRole('Administrator')) {
+        if (!auth()->user() || !auth()->user()->hasRole('admin')) {
             abort(403, 'You are not authorized to delete this doctor.');
         }
 

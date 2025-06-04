@@ -26,8 +26,7 @@ class StorePatientRequest extends FormRequest
             'full_name' => 'required|string|max:255',
             'date_of_birth' => 'nullable|date_format:Y/m/d',
             'gender' => 'required|in:Male,Female,Other',
-            'phone_number' => ['nullable', 'regex:/^[0-9\-\+\s\(\)]{7,20}$/'], // дозволяє цифри, +, -, пробіли, дужки
-            'email' => 'required|email|unique:patients,email',
+            'phone_number' => ['nullable', 'regex:/^[\d\s\-\+\(\)]{7,20}$/'],            'email' => 'required|email|unique:patients,email',
             'address' => 'nullable|string',
 
             // Demographic and Socioeconomic Information

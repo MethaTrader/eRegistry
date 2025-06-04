@@ -6,7 +6,9 @@
         </div>
         <span class="user-img"><img src="{{ asset('assets/img/user-06.jpg') }}" alt="Admin"></span>
     </a>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="{{ url('/login') }}">Logout</a>
-    </div>
+    {{-- resources/views/partials/user-menu.blade.php --}}
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 </li>

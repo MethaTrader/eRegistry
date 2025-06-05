@@ -9,8 +9,12 @@ use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PatientReportController;
+use App\Http\Controllers\TrainingController;
 use App\Models\Monitoring;
 use Illuminate\Support\Facades\Route;
+
+
+Route::redirect('/', '/dashboard');
 
 // Группа маршрутов для гостей (неавторизованных пользователей)
 Route::middleware('guest')->group(function () {
@@ -24,6 +28,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     // Домашняя страница
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('home');
+
+// Training Materials Routes - Add these lines
+    Route::get('/training', [TrainingController::class, 'index'])->name('training.index');
+    Route::get('/training/{id}', [TrainingController::class, 'show'])->name('training.show');
 
 
     // Ресурсы

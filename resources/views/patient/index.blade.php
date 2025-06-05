@@ -301,7 +301,8 @@
                                                                 <i class="fas fa-exclamation-triangle me-1"></i>Danger Zone
                                                             </li>
                                                             <li>
-                                                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient_{{ $patient->id }}">
+                                                                <a class="dropdown-item text-danger" href="#"
+                                                                   onclick="showDeleteModal({{ $patient->id }}, '{{ addslashes($patient->full_name) }}')">
                                                                     <i class="fas fa-trash-alt me-2"></i>
                                                                     <div>
                                                                         <strong>Delete Patient</strong>
@@ -326,24 +327,42 @@
         </div>
     </div>
 
-    <!-- Простой modal для удаления -->
-    <div class="modal fade" id="delete_patient_{{ $patient->id }}" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Единое модальное окно для удаления пациента -->
+    <div class="modal fade" id="deletePatientModal" tabindex="-1" aria-labelledby="deletePatientModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Patient</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title" id="deletePatientModalLabel">
+                        <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                        Confirm Delete
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete <strong>{{ $patient->full_name }}</strong>?</p>
-                    <p class="text-danger small">This action cannot be undone.</p>
+                    <div class="text-center mb-3">
+                        <i class="fas fa-user-times text-danger" style="font-size: 3rem;"></i>
+                    </div>
+                    <p class="text-center mb-3">Are you sure you want to delete patient:</p>
+                    <p class="text-center mb-3">
+                        <strong id="patientNameToDelete" class="text-primary"></strong>
+                    </p>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Warning:</strong> This action cannot be undone. All monitoring records associated with this patient will also be permanently deleted.
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <form action="{{ route('patients.destroy', $patient->id) }}" method="POST" class="d-inline">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>
+                        Cancel
+                    </button>
+                    <form id="deletePatientForm" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash-alt me-1"></i>
+                            Delete Patient
+                        </button>
                     </form>
                 </div>
             </div>
@@ -354,6 +373,20 @@
 
 @push('scripts')
     <script>
+        // Функция для показа модального окна удаления
+        function showDeleteModal(patientId, patientName) {
+            // Устанавливаем имя пациента в модальном окне
+            document.getElementById('patientNameToDelete').textContent = patientName;
+
+            // Устанавливаем action для формы удаления
+            const deleteForm = document.getElementById('deletePatientForm');
+            deleteForm.action = `{{ url('/patients') }}/${patientId}`;
+
+            // Показываем модальное окно
+            const modal = new bootstrap.Modal(document.getElementById('deletePatientModal'));
+            modal.show();
+        }
+
         // Обработчик для кнопки "refresh"
         document.addEventListener('DOMContentLoaded', function() {
             const refreshBtn = document.getElementById('refreshBtn');
@@ -363,6 +396,118 @@
                     document.getElementById('topSearchForm').submit();
                 });
             }
+
+            // Инициализация tooltips
+            const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
         });
     </script>
+
+    <style>
+        /* Дополнительные стили для улучшения внешнего вида */
+        .action-container {
+            white-space: nowrap;
+        }
+
+        .action-quick-btn,
+        .action-more-btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .action-quick-btn:hover,
+        .action-more-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .modern-dropdown {
+            border: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+            min-width: 250px;
+        }
+
+        .modern-dropdown .dropdown-header {
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1rem 0.25rem;
+            color: #6b7280;
+        }
+
+        .modern-dropdown .dropdown-item {
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .modern-dropdown .dropdown-item:hover {
+            background-color: #f8fafc;
+            transform: translateX(2px);
+        }
+
+        .modern-dropdown .dropdown-item div {
+            flex: 1;
+        }
+
+        .modern-dropdown .dropdown-item small {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        /* Только стили для модального окна - затемнение фона и анимация */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .modal.fade .modal-dialog {
+            transform: scale(0.9) translateY(-30px);
+            transition: all 0.3s ease-out;
+        }
+
+        .modal.show .modal-dialog {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-content {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1.5rem;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #e5e7eb;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .action-quick-btn span,
+            .action-more-btn span {
+                display: none !important;
+            }
+
+            .modern-dropdown {
+                min-width: 200px;
+            }
+        }
+    </style>
 @endpush

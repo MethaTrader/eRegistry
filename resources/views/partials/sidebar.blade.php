@@ -38,6 +38,14 @@
                         <li><a href="{{ route('monitoring.create') }}" class="{{ request()->routeIs('patients.monitoring.create') ? 'active' : '' }}">Add monitoring</a></li>
                     </ul>
                 </li>
+
+                <!-- Training Materials - NEW SECTION -->
+                <li class="submenu">
+                    <a href="#"><span class="menu-side"><i class="fas fa-graduation-cap" style="width: 18px; height: 18px; color: #6B7280;"></i></span> <span> Training </span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('training.index') }}" class="{{ request()->routeIs('training.*') ? 'active' : '' }}">Video Tutorials</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

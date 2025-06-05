@@ -7,6 +7,7 @@ use App\Services\DoctorService;
 use App\Services\MonitoringService;
 use App\Services\PatientService;
 use App\Services\StatisticsService;
+use App\Services\TrainingService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(PatientService::class);
         $this->app->singleton(MonitoringService::class);
         $this->app->singleton(DoctorService::class);
+        $this->app->singleton(TrainingService::class);
     }
 
     /**

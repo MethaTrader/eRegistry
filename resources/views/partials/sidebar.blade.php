@@ -32,7 +32,7 @@
 
                 <!-- Patients -->
                 <li class="submenu">
-                    <a href="#"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-02.svg') }}" alt=""></span> <span> Monitoring </span> <span class="menu-arrow"></span></a>
+                    <a href="#"><span class="menu-side"><img src="{{ asset('assets/img/icons/menu-icon-04.svg') }}" alt=""></span> <span> Monitoring </span> <span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{route('monitoring.index')}}" class="{{ request()->routeIs('patients.index') ? 'active' : '' }}">Monitoring List</a></li>
                         <li><a href="{{ route('monitoring.create') }}" class="{{ request()->routeIs('patients.monitoring.create') ? 'active' : '' }}">Add monitoring</a></li>

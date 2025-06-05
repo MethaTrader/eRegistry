@@ -219,27 +219,100 @@
                                         <td>
                                             {{ $patient->monitorings->count() }}
                                         </td>
+                                        <!-- Enhanced Actions Column -->
                                         <td class="text-end">
-                                            <a href="{{ route('patients.show', $patient->id) }}" class="btn btn-sm btn-outline-primary" title="View">
-                                                <i class="feather-eye"></i>
-                                            </a>
-                                            <a href="{{ route('monitoring.create', ['patient_id' => $patient->id]) }}" class="btn btn-sm btn-outline-info" title="Add Monitoring">
-                                                <i class="fa fa-plus"></i>
-                                            </a>
-                                            <a href="{{ route('patients.edit', $patient->id) }}" class="btn btn-sm btn-outline-success" title="Edit">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a href="javascript:;" class="btn btn-sm btn-outline-danger" title="Delete"
-                                               onclick="if(confirm('Are you sure you want to delete this patient?')) { document.getElementById('delete-form-{{ $patient->id }}').submit(); }">
-                                                <i class="fa fa-trash-alt"></i>
-                                            </a>
-                                            <form id="delete-form-{{ $patient->id }}" action="{{ route('patients.destroy', $patient->id) }}" method="POST" style="display:none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                            <a href="{{ route('patients.pdf', $patient->id) }}" class="btn btn-sm btn-outline-primary" title="Download Patient File">
-                                                <i class="fa fa-download"></i>
-                                            </a>
+                                            <div class="action-container">
+                                                <!-- Quick Actions -->
+                                                <div class="quick-actions d-inline-flex me-2">
+                                                    <a href="{{ route('patients.show', $patient->id) }}"
+                                                       class="btn btn-sm btn-outline-info action-quick-btn"
+                                                       data-bs-toggle="tooltip"
+                                                       title="View patient details">
+                                                        <i class="fas fa-eye"></i>
+                                                        <span class="d-none d-xl-inline ms-1">View</span>
+                                                    </a>
+                                                    <a href="{{ route('patients.edit', $patient->id) }}"
+                                                       class="btn btn-sm btn-outline-warning action-quick-btn ms-1"
+                                                       data-bs-toggle="tooltip"
+                                                       title="Edit patient information">
+                                                        <i class="fas fa-edit"></i>
+                                                        <span class="d-none d-xl-inline ms-1">Edit</span>
+                                                    </a>
+                                                </div>
+
+                                                <!-- More Actions -->
+                                                <div class="more-actions d-inline-block">
+                                                    <div class="btn-group">
+                                                        <button type="button"
+                                                                class="btn btn-sm btn-outline-secondary dropdown-toggle action-more-btn"
+                                                                data-bs-toggle="dropdown"
+                                                                aria-expanded="false"
+                                                                data-bs-toggle="tooltip"
+                                                                title="More actions">
+                                                            <i class="fas fa-ellipsis-h"></i>
+                                                            <span class="d-none d-xl-inline ms-1">More</span>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end modern-dropdown">
+                                                            <!-- Monitoring Actions -->
+                                                            <li class="dropdown-header">
+                                                                <i class="fas fa-heartbeat me-1"></i>Monitoring
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item" href="{{ route('monitoring.create', ['patient_id' => $patient->id]) }}">
+                                                                    <i class="fas fa-plus-circle text-success me-2"></i>
+                                                                    <div>
+                                                                        <strong>Add Monitoring</strong>
+                                                                        <small class="text-muted d-block">Create new monitoring record</small>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            @if($patient->monitorings->count() > 0)
+                                                                <li>
+                                                                    <a class="dropdown-item" href="{{ route('monitoring.index', ['patient_id' => $patient->id]) }}">
+                                                                        <i class="fas fa-chart-line text-primary me-2"></i>
+                                                                        <div>
+                                                                            <strong>View History</strong>
+                                                                            <small class="text-muted d-block">{{ $patient->monitorings->count() }} monitoring records</small>
+                                                                        </div>
+                                                                    </a>
+                                                                </li>
+                                                            @endif
+
+                                                            <li><hr class="dropdown-divider"></li>
+
+                                                            <!-- File Actions -->
+                                                            <li class="dropdown-header">
+                                                                <i class="fas fa-file me-1"></i>Files & Reports
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item" href="{{ route('patients.pdf', $patient->id) }}" target="_blank">
+                                                                    <i class="fas fa-file-pdf text-danger me-2"></i>
+                                                                    <div>
+                                                                        <strong>Download PDF</strong>
+                                                                        <small class="text-muted d-block">Complete patient record</small>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+
+                                                            <li><hr class="dropdown-divider"></li>
+
+                                                            <!-- Danger Zone -->
+                                                            <li class="dropdown-header text-danger">
+                                                                <i class="fas fa-exclamation-triangle me-1"></i>Danger Zone
+                                                            </li>
+                                                            <li>
+                                                                <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#delete_patient_{{ $patient->id }}">
+                                                                    <i class="fas fa-trash-alt me-2"></i>
+                                                                    <div>
+                                                                        <strong>Delete Patient</strong>
+                                                                        <small class="d-block">Permanently remove patient</small>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -252,6 +325,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Простой modal для удаления -->
+    <div class="modal fade" id="delete_patient_{{ $patient->id }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Patient</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete <strong>{{ $patient->full_name }}</strong>?</p>
+                    <p class="text-danger small">This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form action="{{ route('patients.destroy', $patient->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @push('scripts')

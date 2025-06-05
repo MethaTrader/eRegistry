@@ -82,9 +82,12 @@
                     <div class="card training-video-card h-100">
                         <!-- Video Thumbnail -->
                         <div class="video-thumbnail-container">
-                            <div class="video-thumbnail"
-                                 style="background-image: url('{{ asset('assets/img/video-placeholder.jpg') }}');">
-                                <div class="play-overlay" data-video-id="{{ $video['id'] }}">
+                            <div class="video-thumbnail" data-category="{{ $video['category'] }}">
+                                <div class="play-overlay"
+                                     data-video-id="{{ $video['id'] }}"
+                                     data-video-title="{{ $video['title'] }}"
+                                     data-video-path="{{ $video['video_path'] }}"
+                                     data-video-url="{{ asset('storage/' . $video['video_path']) }}">
                                     <div class="play-button">
                                         <i class="fas fa-play"></i>
                                     </div>
@@ -117,7 +120,8 @@
                             <button class="btn btn-primary btn-sm w-100 watch-video-btn"
                                     data-video-id="{{ $video['id'] }}"
                                     data-video-title="{{ $video['title'] }}"
-                                    data-video-path="{{ $video['video_path'] }}">
+                                    data-video-path="{{ $video['video_path'] }}"
+                                    data-video-url="{{ asset('storage/' . $video['video_path']) }}">
                                 <i class="fas fa-play me-2"></i>Watch Tutorial
                             </button>
                         </div>
@@ -150,7 +154,13 @@
                 </div>
                 <div class="modal-body p-0">
                     <div class="video-container">
-                        <video id="trainingVideo" class="w-100" controls controlsList="nodownload">
+                        <video id="trainingVideo"
+                               class="w-100"
+                               controls
+                               controlsList="nodownload"
+                               crossorigin="anonymous"
+                               preload="metadata"
+                               data-training-video="true">
                             <source src="" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -423,13 +433,28 @@
                 element.addEventListener('click', function() {
                     const videoId = this.dataset.videoId;
                     const videoTitle = this.dataset.videoTitle || 'Training Video';
-                    const videoPath = this.dataset.videoPath || `training/video-${videoId}.mp4`;
+                    // Используем одинаковый способ получения URL для всех элементов
+                    const videoUrl = this.dataset.videoUrl || `{{ asset('storage') }}/training/video-${videoId}.mp4`;
 
                     // Update modal title
                     videoModalLabel.textContent = videoTitle;
 
-                    // Set video source (placeholder for now)
-                    trainingVideo.src = `/storage/${videoPath}`;
+                    // Set video source with cache-busting parameter
+                    const cacheBuster = new Date().getTime();
+                    const finalVideoUrl = `${videoUrl}?v=${cacheBuster}`;
+
+                    // Clear previous sources
+                    trainingVideo.innerHTML = '';
+
+                    // Add source element
+                    const source = document.createElement('source');
+                    source.src = finalVideoUrl;
+                    source.type = 'video/mp4';
+                    trainingVideo.appendChild(source);
+
+                    // Set additional attributes to prevent adblock detection
+                    trainingVideo.setAttribute('crossorigin', 'anonymous');
+                    trainingVideo.setAttribute('preload', 'metadata');
 
                     // Load the video
                     trainingVideo.load();

@@ -61,4 +61,6 @@ Route::middleware('auth')->group(function () {
 
 //Route::redirect('/','/dashboard');
 
+// API маршруты для графиков (обновленные)
 Route::get('api/chart/patients', [PatientChartController::class, 'index']);
+Route::get('api/chart/patients/age-groups', [PatientChartController::class, 'ageGroupStats']);

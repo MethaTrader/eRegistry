@@ -12449,3 +12449,430 @@ body[data-layout-mode=dark] .alertify .ajs-header {
 		min-width: auto;
 	}
 }
+
+
+/* Dashboard Chart Enhancements */
+.chart-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 2px solid #f1f5f9;
+}
+
+.chart-title h4 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #1e293b;
+	margin: 0;
+}
+
+.nav.chat-user-total {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 1.5rem;
+}
+
+.nav.chat-user-total li {
+	display: flex;
+	align-items: center;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: #64748b;
+}
+
+.nav.chat-user-total li .fa-circle {
+	margin-right: 0.5rem;
+	font-size: 0.75rem;
+}
+
+.nav.chat-user-total li .fa-circle.current-users {
+	color: #667eea;
+}
+
+.nav.chat-user-total li .fa-circle.old-users {
+	color: #f093fb;
+}
+
+/* Year Selector Styling */
+#yearSelector {
+	min-width: 120px;
+	border: 2px solid #e2e8f0;
+	border-radius: 8px;
+	padding: 0.5rem 0.75rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	background: white;
+	color: #374151;
+	transition: all 0.2s ease;
+}
+
+#yearSelector:focus {
+	border-color: #667eea;
+	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+	outline: none;
+}
+
+/* Chart Container Improvements */
+#patient-chart {
+	min-height: 350px;
+	padding: 1rem 0;
+}
+
+/* Loading and Error States */
+.chart-loading, .chart-error {
+	border-radius: 8px;
+	background: #f8fafc;
+	border: 2px dashed #e2e8f0;
+}
+
+.chart-loading .spinner-border {
+	border-width: 3px;
+}
+
+.chart-error i {
+	opacity: 0.6;
+}
+
+/* Card Improvements */
+.card {
+	border: none;
+	border-radius: 12px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-body {
+	padding: 1.5rem;
+}
+
+/* Dashboard Widgets Enhancement */
+.dash-widget {
+	border-radius: 12px;
+	padding: 1.5rem;
+	background: white;
+	border: none;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+	transition: all 0.2s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.dash-widget::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.dash-widget:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dash-content h4 {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #64748b;
+	margin-bottom: 0.5rem;
+}
+
+.dash-content h2 {
+	font-size: 2rem;
+	font-weight: 700;
+	color: #1e293b;
+	margin-bottom: 0.5rem;
+}
+
+.dash-content p {
+	font-size: 0.8rem;
+	margin: 0;
+	color: #64748b;
+}
+
+.passive-view, .negative-view {
+	font-weight: 500;
+}
+
+.passive-view {
+	color: #059669;
+}
+
+.negative-view {
+	color: #dc2626;
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+	.chart-title {
+		flex-direction: column;
+		gap: 1rem;
+		align-items: flex-start;
+	}
+
+	.nav.chat-user-total {
+		gap: 1rem;
+	}
+
+	#yearSelector {
+		min-width: 100px;
+	}
+
+	.dash-widget {
+		margin-bottom: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.chart-title h4 {
+		font-size: 1.1rem;
+	}
+
+	.nav.chat-user-total {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	#patient-chart {
+		min-height: 250px;
+	}
+}
+
+/* Table Enhancements */
+.table-dash .table {
+	font-size: 0.9rem;
+}
+
+.table-dash .table th {
+	font-weight: 600;
+	color: #374151;
+	border-top: none;
+	border-bottom: 2px solid #f1f5f9;
+	padding: 1rem 0.75rem;
+}
+
+.table-dash .table td {
+	padding: 0.875rem 0.75rem;
+	border-top: 1px solid #f1f5f9;
+	vertical-align: middle;
+}
+
+/* Button Improvements */
+.btn-outline-primary {
+	border-width: 2px;
+	font-weight: 500;
+	transition: all 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 6px -1px rgba(102, 126, 234, 0.2);
+}
+
+/* Animation Classes */
+.fade-in {
+	animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; transform: translateY(20px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* Исправление стилей для селектора года */
+.chart-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 2px solid #f1f5f9;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.chart-title h4 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #1e293b;
+	margin: 0;
+	flex: 1;
+	min-width: 200px;
+}
+
+.chart-title-controls {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	flex-wrap: wrap;
+}
+
+.nav.chat-user-total {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 1.5rem;
+	align-items: center;
+}
+
+.nav.chat-user-total li {
+	display: flex;
+	align-items: center;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: #64748b;
+	white-space: nowrap;
+}
+
+.nav.chat-user-total li .fa-circle {
+	margin-right: 0.5rem;
+	font-size: 0.75rem;
+}
+
+.nav.chat-user-total li .fa-circle.current-users {
+	color: #667eea;
+}
+
+.nav.chat-user-total li .fa-circle.old-users {
+	color: #f093fb;
+}
+
+/* Исправленные стили для year selector */
+.year-selector-wrapper {
+	position: relative;
+	min-width: 120px;
+}
+
+#yearSelector {
+	width: 100%;
+	min-width: 120px;
+	border: 2px solid #e2e8f0;
+	border-radius: 8px;
+	padding: 0.5rem 2rem 0.5rem 0.75rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	background: white;
+	color: #374151;
+	transition: all 0.2s ease;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 1rem;
+}
+
+#yearSelector:focus {
+	border-color: #667eea;
+	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+	outline: none;
+}
+
+#yearSelector:hover {
+	border-color: #cbd5e1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.chart-title {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+
+	.chart-title h4 {
+		min-width: auto;
+		width: 100%;
+	}
+
+	.chart-title-controls {
+		width: 100%;
+		justify-content: space-between;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.nav.chat-user-total {
+		justify-content: center;
+		width: 100%;
+		gap: 1rem;
+	}
+
+	.year-selector-wrapper {
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 480px) {
+	.chart-title-controls {
+		align-items: stretch;
+	}
+
+	.nav.chat-user-total {
+		flex-direction: column;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	.year-selector-wrapper {
+		max-width: none;
+	}
+}
+
+/* Loading and Error States (обновленные) */
+.chart-loading, .chart-error {
+	border-radius: 8px;
+	background: #f8fafc;
+	border: 2px dashed #e2e8f0;
+	margin: 1rem 0;
+}
+
+.chart-loading .spinner-border {
+	border-width: 3px;
+}
+
+.chart-error i {
+	opacity: 0.6;
+}
+
+/* Better select dropdown styling for older browsers */
+.year-selector-wrapper::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 0.75rem;
+	transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #64748b;
+	pointer-events: none;
+	display: none; /* Hidden by default, shown only if CSS arrow doesn't work */
+}
+
+/* Fallback for browsers that don't support modern CSS */
+@supports not (background-image: url("data:image/svg+xml")) {
+	.year-selector-wrapper::after {
+		display: block;
+	}
+
+	#yearSelector {
+		background-image: none;
+	}
+}

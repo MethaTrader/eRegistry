@@ -107,31 +107,34 @@
                 </div>
             </div>
         </div>
+        <!-- Enhanced Patient Chart Section -->
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="chart-title patient-visit">
-                            <h4>New patients</h4>
-                            <div >
-                                <ul class="nav chat-user-total">
-                                    <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Men 75%</li>
-                                    <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Women 25%</li>
-                                </ul>
-                            </div>
-                            <div class="input-block mb-0">
-                                <select class="form-control select">
-                                    <option>2024</option>
-                                    <option>2023</option>
-                                    <option>2022</option>
-                                    <option>2021</option>
-                                </select>
+                            <h4>New patients registration</h4>
+                            <div class="chart-title-controls">
+                                <div>
+                                    <ul class="nav chat-user-total">
+                                        <li><i class="fa fa-circle current-users" aria-hidden="true"></i>Men <span id="male-percent">0%</span></li>
+                                        <li><i class="fa fa-circle old-users" aria-hidden="true"></i> Women <span id="female-percent">0%</span></li>
+                                    </ul>
+                                </div>
+                                <div class="year-selector-wrapper">
+                                    <select class="form-control" id="yearSelector">
+                                        @for($year = date('Y'); $year >= date('Y') - 5; $year--)
+                                            <option value="{{ $year }}" {{ $year == date('Y') ? 'selected' : '' }}>{{ $year }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div id="patient-chart"></div>
                     </div>
                 </div>
             </div>
+        </div>
 {{--            <div class="col-12 col-md-12 col-lg-6 col-xl-3 d-flex">--}}
 {{--                <div class="card">--}}
 {{--                    <div class="card-body">--}}

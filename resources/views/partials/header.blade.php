@@ -1,6 +1,6 @@
 <div class="header">
     <div class="header-left">
-        <a href="{{ url('/') }}" class="logo">
+        <a href="{{ url('/dashboard') }}" class="logo">
             <img src="{{ asset('assets/img/logo.png') }}" width="35" height="35" alt=""> <span>eRegistry</span>
         </a>
     </div>

@@ -64,6 +64,14 @@
             <p><strong>Genetic Testing:</strong> {{ $monitoring->genetic_testing ?: 'N/A' }}</p>
             <p><strong>Biomarker Data:</strong> {{ $monitoring->biomarker_data ?: 'N/A' }}</p>
             <p><strong>Genetic Mutations:</strong> {{ $monitoring->genetic_mutations ?: 'N/A' }}</p>
+            <p><strong>Immunohistochemistry:</strong>
+                @if($monitoring->immunohistochemistry)
+                    <span class="file-status">File available</span>
+                @else
+                    <span class="file-status">No file</span>
+                @endif
+            </p>
+            <p><strong>Diagnoz:</strong> {{ $monitoring->diagnoz ?: 'N/A' }}</p>
         </div>
     </div>
 </div>

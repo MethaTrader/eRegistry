@@ -80,18 +80,35 @@
                                         </div>
                                     </div>
                                     <!-- Фильтр по типу рака -->
+                                    <!-- Фильтр по типу рака -->
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">
                                             <label>Cancer Type</label>
-                                            <select name="cancer_type" class="form-control select">
-                                                <option value="">Select Cancer Type</option>
-                                                <option value="glioblastoma" {{ request('cancer_type') == 'glioblastoma' ? 'selected' : '' }}>Glioblastoma</option>
-                                                <option value="meningioma" {{ request('cancer_type') == 'meningioma' ? 'selected' : '' }}>Meningioma</option>
-                                                <option value="neuroblastoma" {{ request('cancer_type') == 'neuroblastoma' ? 'selected' : '' }}>Neuroblastoma</option>
-                                                <option value="other" {{ request('cancer_type') == 'other' ? 'selected' : '' }}>Other</option>
-                                            </select>
+                                            <input list="filter_cancer_types" name="cancer_type" class="form-control" placeholder="Select or enter cancer type" value="{{ request('cancer_type') }}">
+                                            <datalist id="filter_cancer_types">
+                                                <option value="glioblastoma">Glioblastoma</option>
+                                                <option value="meningioma">Meningioma</option>
+                                                <option value="neuroblastoma">Neuroblastoma</option>
+                                                <option value="Astrocytoma, IDH-mutant">Astrocytoma, IDH-mutant</option>
+                                                <option value="Oligodendroglioma, IDH-mutant and 1p/19q-codeleted">Oligodendroglioma, IDH-mutant and 1p/19q-codeleted</option>
+                                                <option value="Glioblastoma, IDH-wildtype">Glioblastoma, IDH-wildtype</option>
+                                                <option value="Diffuse midline glioma, H3 K27-altered">Diffuse midline glioma, H3 K27-altered</option>
+                                                <option value="Pilocytic astrocytoma">Pilocytic astrocytoma</option>
+                                                <option value="Medulloblastoma, WNT-activated">Medulloblastoma, WNT-activated</option>
+                                                <option value="Primary CNS lymphoma">Primary CNS lymphoma</option>
+                                                <option value="Brain metastases">Brain metastases</option>
+                                                <option value="other">Other</option>
+                                            </datalist>
                                         </div>
                                     </div>
+
+                                    <div class="col-12 col-md-6 col-xl-4">
+                                        <div class="input-block local-forms">
+                                            <label>Diagnoz</label>
+                                            <input type="text" name="diagnoz" class="form-control" placeholder="Enter diagnoz" value="{{ request('diagnoz') }}">
+                                        </div>
+                                    </div>
+
                                     <!-- Фильтр по стадии -->
                                     <div class="col-12 col-md-6 col-xl-4">
                                         <div class="input-block local-forms">

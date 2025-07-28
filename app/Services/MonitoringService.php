@@ -72,6 +72,10 @@ class MonitoringService
             $query->whereDate('visit_date', '<=', $request->input('visit_to'));
         }
 
+        if ($request->filled('diagnoz')) {
+            $query->where('diagnoz', 'like', '%' . $request->input('diagnoz') . '%');
+        }
+
         // Фильтр по типу рака
         if ($request->filled('cancer_type')) {
             $query->where('cancer_type', $request->input('cancer_type'));

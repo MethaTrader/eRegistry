@@ -77,6 +77,19 @@
                             @endif
                         </p>
                     </div>
+
+                    <div class="col-md-4">
+                        <p><strong>Immunohistochemistry:</strong>
+                            @if($monitoring->immunohistochemistry)
+                                <a href="{{ $monitoring->immunohistochemistry }}" class="btn btn-sm btn-primary" target="_blank">
+                                    <i class="fa fa-download"></i> Download
+                                </a>
+                            @else
+                                <span class="text-danger">No file available</span>
+                            @endif
+                        </p>
+                    </div>
+
                 </div>
                 <hr>
                 <!-- Genetic and Biomarker Data -->
@@ -85,8 +98,13 @@
                         <p><strong>Genetic Testing:</strong> {{ $monitoring->genetic_testing ?: 'N/A' }}</p>
                         <p><strong>Biomarker Data:</strong> {{ $monitoring->biomarker_data ?: 'N/A' }}</p>
                     </div>
+
                     <div class="col-md-6">
                         <p><strong>Genetic Mutations:</strong> {{ $monitoring->genetic_mutations ?: 'N/A' }}</p>
+                    </div>
+
+                    <div class="col-12">
+                        <p><strong>Diagnoz:</strong> {{ $monitoring->diagnoz ?: 'N/A' }}</p>
                     </div>
                 </div>
             </div>

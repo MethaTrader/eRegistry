@@ -139,9 +139,12 @@
                                         <label>Ethnicity</label>
                                         <select class="form-control @error('ethnicity') is-invalid @enderror" name="ethnicity">
                                             <option value="">Select ethnicity</option>
-                                            <option value="hispanic" {{ old('ethnicity') == 'hispanic' ? 'selected' : '' }}>Hispanic or Latino</option>
-                                            <option value="non_hispanic" {{ old('ethnicity') == 'non_hispanic' ? 'selected' : '' }}>Not Hispanic or Latino</option>
-                                            <option value="unknown" {{ old('ethnicity') == 'unknown' ? 'selected' : '' }}>Unknown</option>
+                                            <option value="European" {{ old('ethnicity') == 'European' ? 'selected' : '' }}>European</option>
+                                            <option value="Slavic" {{ old('ethnicity') == 'Slavic' ? 'selected' : '' }}>Slavic</option>
+                                            <option value="Romanian" {{ old('ethnicity') == 'Romanian' ? 'selected' : '' }}>Romanian</option>
+                                            <option value="Turkish" {{ old('ethnicity') == 'Turkish' ? 'selected' : '' }}>Turkish</option>
+                                            <option value="Roma" {{ old('ethnicity') == 'Roma' ? 'selected' : '' }}>Roma</option>
+                                            <option value="Other" {{ old('ethnicity') == 'Other' ? 'selected' : '' }}>Other</option>
                                         </select>
                                         @error('ethnicity')
                                         <div class="invalid-feedback">{{ $message }}</div>

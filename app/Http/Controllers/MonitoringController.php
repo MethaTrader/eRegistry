@@ -65,8 +65,9 @@ class MonitoringController extends Controller
     public function edit(Monitoring $monitoring)
     {
         $patients = $this->monitoringService->getPatientsForSelect();
+        $lastMonitoring = $monitoring; // Используем текущий мониторинг как "последний"
 
-        return view('monitoring.edit', compact('monitoring', 'patients'));
+        return view('monitoring.edit', compact('monitoring', 'patients', 'lastMonitoring'));
     }
 
     /**

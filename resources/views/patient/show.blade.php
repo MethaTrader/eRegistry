@@ -70,6 +70,7 @@
                                 <p><strong>Diagnosis Date:</strong> {{ \Carbon\Carbon::parse($monitoring->diagnosis_date)->format('d M Y') }}</p>
                                 <p><strong>Cancer Type:</strong> {{ $monitoring->cancer_type ?: 'N/A' }}</p>
                                 <p><strong>Stage:</strong> {{ $monitoring->stage ?: 'N/A' }}</p>
+                                <p><strong>Diagnoz:</strong> {{ $monitoring->diagnoz ?: 'N/A' }}</p>
                                 <p><strong>Grade:</strong> {{ $monitoring->grade ?: 'N/A' }}</p>
                                 @if($monitoring->pathology_reports)
                                     <p><strong>Pathology Report:</strong> <a href="{{ $monitoring->pathology_reports }}" target="_blank" style="color: #2196F3;">Download</a></p>

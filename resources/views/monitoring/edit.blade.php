@@ -80,13 +80,13 @@
                                 <div class="col-12 col-md-6">
                                     <div class="input-block local-forms">
                                         <label>Type of Neurological Cancer</label>
-                                        <select name="cancer_type" class="form-control select2">
-                                            <option value="">Select type</option>
-                                            <option value="glioblastoma" {{ old('cancer_type', $monitoring->cancer_type) == 'glioblastoma' ? 'selected' : '' }}>Glioblastoma</option>
-                                            <option value="meningioma" {{ old('cancer_type', $monitoring->cancer_type) == 'meningioma' ? 'selected' : '' }}>Meningioma</option>
-                                            <option value="neuroblastoma" {{ old('cancer_type', $monitoring->cancer_type) == 'neuroblastoma' ? 'selected' : '' }}>Neuroblastoma</option>
-                                            <option value="other" {{ old('cancer_type', $monitoring->cancer_type) == 'other' ? 'selected' : '' }}>Other</option>
-                                        </select>
+                                        <input list="cancer_types" name="cancer_type" class="form-control" placeholder="Select or enter cancer type" value="{{ old('cancer_type', $lastMonitoring ? $lastMonitoring->cancer_type : '') }}">
+                                        <datalist id="cancer_types">
+                                            <option value="glioblastoma">Glioblastoma</option>
+                                            <option value="meningioma">Meningioma</option>
+                                            <option value="neuroblastoma">Neuroblastoma</option>
+                                            <option value="other">Other</option>
+                                        </datalist>
                                     </div>
                                 </div>
 
@@ -148,6 +148,19 @@
                                             <input type="text" id="fm_ct_findings" class="form-control" name="ct_findings" value="{{ old('ct_findings', $monitoring->ct_findings) }}" aria-label="CT Scan Findings" aria-describedby="btn_fm_ct_findings">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary" type="button" id="btn_fm_ct_findings">Select</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Immunohistochemistry with File Manager -->
+                                <div class="col-12">
+                                    <div class="input-block local-forms">
+                                        <label>Immunohistochemistry</label>
+                                        <div class="input-group">
+                                            <input type="text" id="fm_immunohistochemistry" class="form-control" name="immunohistochemistry" value="{{ old('immunohistochemistry', $lastMonitoring ? $lastMonitoring->immunohistochemistry : '') }}" aria-label="Immunohistochemistry" aria-describedby="btn_fm_immunohistochemistry">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button" id="btn_fm_immunohistochemistry">Select</button>
                                             </div>
                                         </div>
                                     </div>
@@ -230,6 +243,15 @@
                                         <textarea name="biomarker_data" class="form-control" rows="3" placeholder="Enter biomarker data">{{ old('biomarker_data', $monitoring->biomarker_data) }}</textarea>
                                     </div>
                                 </div>
+
+                                <!-- Diagnoz -->
+                                <div class="col-12">
+                                    <div class="input-block local-forms">
+                                        <label>Diagnoz</label>
+                                        <textarea name="diagnoz" class="form-control" rows="3" placeholder="Enter diagnoz details">{{ old('diagnoz', $lastMonitoring ? $lastMonitoring->diagnoz : '') }}</textarea>
+                                    </div>
+                                </div>
+
                                 <!-- Genetic Mutations -->
                                 <div class="col-12">
                                     <div class="input-block local-forms">
@@ -276,6 +298,8 @@
             openFileManager('btn_fm_pathology_reports', 'fm_pathology_reports', 'monitoring/pathology_reports');
             openFileManager('btn_fm_mri_findings', 'fm_mri_findings', 'monitoring/mri_findings');
             openFileManager('btn_fm_ct_findings', 'fm_ct_findings', 'monitoring/ct_findings');
+            openFileManager('btn_fm_immunohistochemistry', 'fm_immunohistochemistry', 'monitoring/immunohistochemistry');
+
         });
 
         function fmSetLink(url) {

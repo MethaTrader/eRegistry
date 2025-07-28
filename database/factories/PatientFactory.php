@@ -35,7 +35,7 @@ class PatientFactory extends Factory
             'phone_number'    => $this->faker->optional()->phoneNumber,
             'email'           => $this->faker->unique()->safeEmail,
             'address'         => $this->faker->optional()->address,
-            'ethnicity'             => $this->faker->optional()->word,
+            'ethnicity'       => $this->faker->optional()->randomElement(['European', 'Slavic', 'Romanian', 'Turkish', 'Roma', 'Other']),
             'race'                  => $this->faker->optional()->word,
             'occupation'            => $this->faker->optional()->jobTitle,
             'insurance_status'      => $this->faker->optional()->randomElement(['Insured', 'Uninsured']),

@@ -34,6 +34,8 @@ class Monitoring extends Model
         'genetic_testing',
         'biomarker_data',
         'genetic_mutations',
+        'immunohistochemistry',
+        'diagnoz'
     ];
 
     public function patient()

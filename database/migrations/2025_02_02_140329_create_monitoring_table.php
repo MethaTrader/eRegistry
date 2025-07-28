@@ -61,6 +61,9 @@ return new class extends Migration
             $table->text('biomarker_data')->nullable();
             $table->text('genetic_mutations')->nullable();
 
+            $table->string('immunohistochemistry', 255)->nullable();
+            $table->text('diagnoz')->nullable();
+
             $table->timestamps();
         });
     }

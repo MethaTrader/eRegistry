@@ -132,6 +132,15 @@
                             <span class="file-status">No file</span>
                         @endif
                     </div>
+
+                    <div class="info-line">
+                        <strong>Immunohistochemistry:</strong>
+                        @if($monitoring->immunohistochemistry)
+                            <span class="file-status">File available</span>
+                        @else
+                            <span class="file-status">No file</span>
+                        @endif
+                    </div>
                     <div class="info-line"><strong>Follow-up Date:</strong> {{ $monitoring->followup_date ? \Carbon\Carbon::parse($monitoring->followup_date)->format('d M Y') : 'N/A' }}</div>
                     <div class="info-line"><strong>Follow-up Results:</strong> {{ $monitoring->followup_results ?: 'N/A' }}</div>
                     <div class="info-line"><strong>Disease Progression Date:</strong> {{ $monitoring->progression_date ? \Carbon\Carbon::parse($monitoring->progression_date)->format('d M Y') : 'N/A' }}</div>
@@ -141,6 +150,8 @@
                     <div class="info-line"><strong>Genetic Testing:</strong> {{ $monitoring->genetic_testing ?: 'N/A' }}</div>
                     <div class="info-line"><strong>Biomarker Data:</strong> {{ $monitoring->biomarker_data ?: 'N/A' }}</div>
                     <div class="info-line"><strong>Genetic Mutations:</strong> {{ $monitoring->genetic_mutations ?: 'N/A' }}</div>
+                    <div class="info-line"><strong>Diagnoz:</strong> {{ $monitoring->diagnoz ?: 'N/A' }}</div>
+
                 </div>
             @endforeach
         @else

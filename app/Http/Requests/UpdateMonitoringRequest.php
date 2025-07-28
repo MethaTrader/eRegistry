@@ -45,6 +45,8 @@ class UpdateMonitoringRequest extends FormRequest
             'genetic_testing'       => 'nullable|string',
             'biomarker_data'        => 'nullable|string',
             'genetic_mutations'     => 'nullable|string',
+            'immunohistochemistry' => 'nullable|string',
+            'diagnoz' => 'nullable|string'
         ];
     }
 }

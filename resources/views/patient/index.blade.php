@@ -82,16 +82,35 @@
                             <form action="{{ route('patients.index') }}" method="GET">
                                 <div class="row">
                                     <!-- Filter by Cancer Type -->
-                                    <div class="col-12 col-md-6 col-xl-4">
+                                    <!-- Type of Neurological Cancer -->
+                                    <div class="col-12 col-md-6">
                                         <div class="input-block local-forms">
-                                            <label>Cancer Type</label>
-                                            <select name="cancer_type" class="form-control select">
-                                                <option value="">Select Cancer Type</option>
-                                                <option value="glioblastoma" {{ request('cancer_type')=='glioblastoma' ? 'selected' : '' }}>Glioblastoma</option>
-                                                <option value="meningioma" {{ request('cancer_type')=='meningioma' ? 'selected' : '' }}>Meningioma</option>
-                                                <option value="neuroblastoma" {{ request('cancer_type')=='neuroblastoma' ? 'selected' : '' }}>Neuroblastoma</option>
-                                                <option value="other" {{ request('cancer_type')=='other' ? 'selected' : '' }}>Other</option>
-                                            </select>
+                                            <label>Type of Neurological Cancer</label>
+                                            <input list="cancer_types" name="cancer_type" class="form-control" placeholder="Select or enter cancer type" value="{{request('cancer_type') ?? ''}}">
+                                            <datalist id="cancer_types">
+                                                <option value="glioblastoma">Glioblastoma</option>
+                                                <option value="meningioma">Meningioma</option>
+                                                <option value="neuroblastoma">Neuroblastoma</option>
+                                                <option value="Astrocytoma, IDH-mutant">Astrocytoma, IDH-mutant</option>
+                                                <option value="Oligodendroglioma, IDH-mutant and 1p/19q-codeleted">Oligodendroglioma, IDH-mutant and 1p/19q-codeleted</option>
+                                                <option value="Glioblastoma, IDH-wildtype">Glioblastoma, IDH-wildtype</option>
+                                                <option value="Diffuse midline glioma, H3 K27-altered">Diffuse midline glioma, H3 K27-altered</option>
+                                                <option value="Pilocytic astrocytoma">Pilocytic astrocytoma</option>
+                                                <option value="Pleomorphic xanthoastrocytoma">Pleomorphic xanthoastrocytoma</option>
+                                                <option value="Ganglioglioma">Ganglioglioma</option>
+                                                <option value="Ependymoma">Ependymoma</option>
+                                                <option value="Choroid plexus papilloma">Choroid plexus papilloma</option>
+                                                <option value="Medulloblastoma, WNT-activated">Medulloblastoma, WNT-activated</option>
+                                                <option value="Medulloblastoma, SHH-activated">Medulloblastoma, SHH-activated</option>
+                                                <option value="Pineocytoma">Pineocytoma</option>
+                                                <option value="Schwannoma">Schwannoma</option>
+                                                <option value="Primary CNS lymphoma">Primary CNS lymphoma</option>
+                                                <option value="Craniopharyngioma">Craniopharyngioma</option>
+                                                <option value="Pituitary adenoma">Pituitary adenoma</option>
+                                                <option value="Brain metastases">Brain metastases</option>
+                                                <option value="Hemangioblastoma">Hemangioblastoma</option>
+                                                <option value="other">Other</option>
+                                            </datalist>
                                         </div>
                                     </div>
                                     <!-- Filter by Full Name -->

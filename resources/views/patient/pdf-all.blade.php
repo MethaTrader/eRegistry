@@ -84,6 +84,8 @@
                         <p><strong>Genetic Testing:</strong> {{ $monitoring->genetic_testing ?: 'N/A' }}</p>
                         <p><strong>Biomarker Data:</strong> {{ $monitoring->biomarker_data ?: 'N/A' }}</p>
                         <p><strong>Genetic Mutations:</strong> {{ $monitoring->genetic_mutations ?: 'N/A' }}</p>
+                        <p><strong>Immunohistochemistry:</strong> {{ $monitoring->immunohistochemistry ? 'File available' : 'N/A' }}</p>
+                        <p><strong>Diagnoz:</strong> {{ $monitoring->diagnoz ?: 'N/A' }}</p>
                     </div>
                 @endforeach
             @else
